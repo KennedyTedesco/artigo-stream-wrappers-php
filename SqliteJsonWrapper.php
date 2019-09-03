@@ -21,13 +21,17 @@ final class SqliteJsonWrapper
 
     public function stream_open(string $path, string $mode, int $options) : bool
     {
+        // Resgata as informações de contexto da stream que foram passadas
         $streamContext = \stream_context_get_options($this->context);
 
         if (empty($streamContext['database'])) {
             throw new \RuntimeException('Missing Stream Context');
         }
 
+        // Conecta à base de dados
         $this->connect($streamContext);
+
+        // Performa a pesquisa
         $this->query($path);
 
         return true;
@@ -67,8 +71,10 @@ final class SqliteJsonWrapper
 
     private function query(string $path) : void
     {
+        // Extrai o nome da tabela
         $table = \parse_url($path, \PHP_URL_HOST);
 
+        // Tenta extrair se é pra delimitar a consulta com where
         $where = [];
         if ($path = \parse_url($path, \PHP_URL_PATH)) {
             $criteria = \explode('/', $path);
@@ -78,6 +84,7 @@ final class SqliteJsonWrapper
             ];
         }
 
+        // Armazena os resultados no formato json
         $this->result = $this->connection->table($table)->where($where)->get()->toJson();
     }
 }
