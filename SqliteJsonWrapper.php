@@ -86,5 +86,3 @@ final class SqliteJsonWrapper
         $this->result = $this->connection->table($table)->where($where)->get()->toJson();
     }
 }
-
-\stream_wrapper_register('sqlj', SqliteJsonWrapper::class);
