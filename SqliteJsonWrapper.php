@@ -47,11 +47,6 @@ final class SqliteJsonWrapper
         return ! ($this->position < \mb_strlen($this->result));
     }
 
-    public function stream_tell() : int
-    {
-        return $this->position;
-    }
-
     public function stream_stat() : ?array
     {
         return null;
