@@ -21,3 +21,5 @@ while (\feof($stream) === false) {
 }
 
 echo $buffer;
+
+fclose($stream);
