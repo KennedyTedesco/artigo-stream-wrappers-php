@@ -1,5 +1,5 @@
 {
-    "name": "kennedytedesco/stream-wrappers-php",
+    "name": "kennedytedesco/artigo-stream-wrappers-php",
     "description": "Exemplo do artigo Stream Wrappers personalizados no PHP",
     "license": "MIT",
     "require": {
